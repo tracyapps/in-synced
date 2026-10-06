@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: In Synced 0.1.0\n"
+"Project-Id-Version: In Synced 0.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/in-synced\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-04T05:18:37+00:00\n"
+"POT-Creation-Date: 2026-10-06T08:20:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: in-synced\n"
@@ -29,683 +29,1374 @@ msgstr ""
 msgid "Tapps"
 msgstr ""
 
-#: includes/class-in-synced.php:234
+#: includes/class-in-synced-cli.php:56
+msgid "In Synced profile completed."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced-cli.php:91
+#, php-format
+msgid "Profile: %s"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced-cli.php:93
+#: includes/class-in-synced-cli.php:135
+#, php-format
+msgid "Remote: %s"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced-cli.php:93
+msgid "not configured"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced-cli.php:95
+#, php-format
+msgid "Mode: %s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced-cli.php:97
+#, php-format
+msgid "Database: %1$s table(s), %2$s row(s)"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced-cli.php:99
+#, php-format
+msgid "Media: %1$s file(s), %2$s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced-cli.php:101
+#, php-format
+msgid "Files: %1$s file(s), %2$s"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced-cli.php:135
+msgid "connected"
+msgstr ""
+
+#: includes/class-in-synced-cli.php:136
+msgid "Post types:"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail, %3$s: sync detail, %4$s: sync detail.
+#: includes/class-in-synced-cli.php:139
+#, php-format
+msgid "  %1$s local=%2$s remote=%3$s delta=%4$s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced-cli.php:155
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: includes/class-in-synced-safety.php:44
+msgid "Each database row must be a nonempty object."
+msgstr ""
+
+#: includes/class-in-synced-safety.php:48
+msgid "Invalid database column name."
+msgstr ""
+
+#: includes/class-in-synced-safety.php:54
+msgid "Invalid base64 database value."
+msgstr ""
+
+#: includes/class-in-synced-safety.php:57
+msgid "Database strings must use the v2 base64 encoding."
+msgstr ""
+
+#: includes/class-in-synced.php:87
+#: includes/class-in-synced.php:1195
+msgid "Default staging push"
+msgstr ""
+
+#: includes/class-in-synced.php:165
+#: includes/class-in-synced.php:1633
+msgid "Sync is currently supported only on single-site WordPress installs."
+msgstr ""
+
+#: includes/class-in-synced.php:171
+msgid "In Synced is not paired on this site."
+msgstr ""
+
+#: includes/class-in-synced.php:180
+msgid "In Synced requires v2 signature headers. Upgrade both paired sites before syncing."
+msgstr ""
+
+#: includes/class-in-synced.php:184
+msgid "In Synced request timestamp is outside the allowed window."
+msgstr ""
+
+#: includes/class-in-synced.php:189
+#: includes/class-in-synced.php:207
+msgid "In Synced request nonce has already been used."
+msgstr ""
+
+#: includes/class-in-synced.php:194
+#: includes/class-in-synced.php:2925
+msgid "The sync request exceeds the 8 MB limit. Reduce the batch size."
+msgstr ""
+
+#: includes/class-in-synced.php:197
+msgid "Sync requests must contain a JSON object."
+msgstr ""
+
+#: includes/class-in-synced.php:202
+msgid "Invalid In Synced request signature."
+msgstr ""
+
+#: includes/class-in-synced.php:251
 msgid "You do not have permission to access In Synced."
 msgstr ""
 
-#: includes/class-in-synced.php:263
+#: includes/class-in-synced.php:282
 msgid "Connection Settings"
 msgstr ""
 
-#: includes/class-in-synced.php:269
+#: includes/class-in-synced.php:288
 msgid "Remote admin/API URL"
 msgstr ""
 
-#: includes/class-in-synced.php:273
+#: includes/class-in-synced.php:292
 msgid "This site's public URL"
 msgstr ""
 
-#: includes/class-in-synced.php:277
+#: includes/class-in-synced.php:296
 msgid "Remote public URL"
 msgstr ""
 
-#: includes/class-in-synced.php:281
+#: includes/class-in-synced.php:300
 msgid "Shared secret"
 msgstr ""
 
-#: includes/class-in-synced.php:283
+#: includes/class-in-synced.php:302
 msgid "Stored secret"
 msgstr ""
 
-#: includes/class-in-synced.php:283
+#: includes/class-in-synced.php:302
 msgid "Paste shared secret"
 msgstr ""
 
-#: includes/class-in-synced.php:284
+#: includes/class-in-synced.php:303
 msgid "Generate suggested secret"
 msgstr ""
 
-#: includes/class-in-synced.php:285
-#: includes/class-in-synced.php:705
+#: includes/class-in-synced.php:304
+#: includes/class-in-synced.php:747
 msgid "Copy secret"
 msgstr ""
 
 #. translators: %s: current secret fingerprint.
-#: includes/class-in-synced.php:290
+#: includes/class-in-synced.php:309
 #, php-format
 msgid "Current fingerprint: %s. Leave blank to keep the current secret."
 msgstr ""
 
-#: includes/class-in-synced.php:294
+#: includes/class-in-synced.php:313
 msgid "Use the same secret on both sites; copy it into the other site’s Connection Settings. For stronger security, define IN_SYNCED_SHARED_SECRET in wp-config.php on both sites (at least 32 characters) instead of storing it here."
 msgstr ""
 
-#: includes/class-in-synced.php:299
-#: includes/class-in-synced.php:302
+#: includes/class-in-synced.php:318
+#: includes/class-in-synced.php:321
 msgid "Receiver permissions"
 msgstr ""
 
-#: includes/class-in-synced.php:303
+#: includes/class-in-synced.php:322
 msgid "Allow signed database writes to this site"
 msgstr ""
 
-#: includes/class-in-synced.php:304
+#: includes/class-in-synced.php:323
 msgid "Allow signed upload writes to this site"
 msgstr ""
 
-#: includes/class-in-synced.php:305
+#: includes/class-in-synced.php:324
 msgid "Allow signed wp-content file writes to this site"
 msgstr ""
 
-#: includes/class-in-synced.php:310
+#: includes/class-in-synced.php:329
 msgid "Allowed wp-content roots"
 msgstr ""
 
-#: includes/class-in-synced.php:313
-#: includes/class-in-synced.php:630
+#: includes/class-in-synced.php:332
+#: includes/class-in-synced.php:665
 msgid "One relative wp-content path per line. Examples:"
 msgstr ""
 
-#: includes/class-in-synced.php:313
+#: includes/class-in-synced.php:332
 msgid "Receivers only accept writes inside these roots."
 msgstr ""
 
-#: includes/class-in-synced.php:317
+#: includes/class-in-synced.php:336
 msgid "Save connection"
 msgstr ""
 
-#: includes/class-in-synced.php:323
+#: includes/class-in-synced.php:342
 msgid "Test remote"
 msgstr ""
 
-#: includes/class-in-synced.php:380
+#: includes/class-in-synced.php:403
 msgid "Push selected database tables, uploads, and explicit wp-content file roots from this site to a paired WordPress site using signed requests."
 msgstr ""
 
-#: includes/class-in-synced.php:382
+#: includes/class-in-synced.php:405
 msgid "Key"
 msgstr ""
 
-#: includes/class-in-synced.php:382
+#: includes/class-in-synced.php:405
 msgid "Not paired"
 msgstr ""
 
-#: includes/class-in-synced.php:399
-msgid "Setup checklist"
-msgstr ""
-
-#: includes/class-in-synced.php:400
-msgid "Finish pairing this site with its partner before pushing:"
-msgstr ""
-
-#: includes/class-in-synced.php:403
-#: includes/class-in-synced.php:408
-msgid "Completed —"
-msgstr ""
-
-#: includes/class-in-synced.php:404
-msgid "Use the same long shared secret (32+ characters) on both sites."
-msgstr ""
-
-#: includes/class-in-synced.php:405
-msgid "Add the shared secret"
-msgstr ""
-
-#: includes/class-in-synced.php:409
-msgid "Set the remote admin/API URL on the sending site (skip if this site only receives)."
-msgstr ""
-
-#: includes/class-in-synced.php:410
-msgid "Set the remote URL"
-msgstr ""
-
-#: includes/class-in-synced.php:412
-msgid "Run “Test remote” and confirm the receiver permissions on the other site."
-msgstr ""
-
-#: includes/class-in-synced.php:413
-msgid "Use “Preview push”, then “Push Now”."
-msgstr ""
-
-#: includes/class-in-synced.php:419
-#: includes/class-in-synced.php:712
-msgid "Remote"
-msgstr ""
-
-#: includes/class-in-synced.php:419
-#: includes/class-in-synced.php:421
-msgid "Not configured"
-msgstr ""
-
-#: includes/class-in-synced.php:420
-msgid "Find/replace"
-msgstr ""
-
-#: includes/class-in-synced.php:420
-msgid "remote"
-msgstr ""
-
-#: includes/class-in-synced.php:421
-msgid "Allowed file roots"
+#: includes/class-in-synced.php:416
+msgid "Previous push log"
 msgstr ""
 
 #: includes/class-in-synced.php:422
-msgid "Last run"
+msgid "Setup checklist"
 msgstr ""
 
-#: includes/class-in-synced.php:424
-msgid "No completed run yet"
+#: includes/class-in-synced.php:423
+msgid "Finish pairing this site with its partner before pushing:"
 msgstr ""
 
-#: includes/class-in-synced.php:427
-msgid "Failed"
+#: includes/class-in-synced.php:429
+#: includes/class-in-synced.php:437
+msgid "Completed —"
 msgstr ""
 
-#: includes/class-in-synced.php:427
-msgid "Complete"
+#: includes/class-in-synced.php:430
+msgid "Use the same long shared secret (32+ characters) on both sites."
 msgstr ""
 
-#: includes/class-in-synced.php:432
-msgid "row(s)"
+#: includes/class-in-synced.php:431
+msgid "Add the shared secret"
 msgstr ""
 
-#: includes/class-in-synced.php:436
-msgid "file(s)"
+#: includes/class-in-synced.php:438
+msgid "Set the remote admin/API URL on the sending site (skip if this site only receives)."
+msgstr ""
+
+#: includes/class-in-synced.php:439
+msgid "Set the remote URL"
+msgstr ""
+
+#: includes/class-in-synced.php:441
+msgid "Run “Test remote” and confirm the receiver permissions on the other site."
+msgstr ""
+
+#: includes/class-in-synced.php:442
+msgid "Use “Preview push”, then “Push Now”."
+msgstr ""
+
+#: includes/class-in-synced.php:448
+#: includes/class-in-synced.php:754
+msgid "Remote"
+msgstr ""
+
+#: includes/class-in-synced.php:448
+#: includes/class-in-synced.php:450
+msgid "Not configured"
+msgstr ""
+
+#: includes/class-in-synced.php:449
+msgid "Find/replace"
+msgstr ""
+
+#: includes/class-in-synced.php:449
+msgid "remote"
 msgstr ""
 
 #: includes/class-in-synced.php:450
-msgid "Push Console"
+msgid "Allowed file roots"
 msgstr ""
 
-#: includes/class-in-synced.php:452
-msgid "Complete steps 1–2 of the setup checklist above before running a push."
+#: includes/class-in-synced.php:451
+msgid "Last run"
 msgstr ""
 
 #: includes/class-in-synced.php:454
-msgid "Quick sync scopes"
-msgstr ""
-
-#: includes/class-in-synced.php:455
-msgid "Database, uploads, and configured wp-content roots."
-msgstr ""
-
-#: includes/class-in-synced.php:455
-msgid "Full"
-msgstr ""
-
-#: includes/class-in-synced.php:456
-msgid "Database and uploads."
-msgstr ""
-
-#: includes/class-in-synced.php:456
-msgid "Content + Media"
+msgid "No completed run yet"
 msgstr ""
 
 #: includes/class-in-synced.php:457
-msgid "Database only."
+msgid "Failed"
 msgstr ""
 
 #: includes/class-in-synced.php:457
-#: includes/class-in-synced.php:474
-#: includes/class-in-synced.php:557
-#: includes/class-in-synced.php:707
-msgid "Database"
+msgid "Complete"
 msgstr ""
 
-#: includes/class-in-synced.php:458
-msgid "Uploads only."
+#: includes/class-in-synced.php:462
+msgid "row(s)"
 msgstr ""
 
-#: includes/class-in-synced.php:458
-#: includes/class-in-synced.php:475
-#: includes/class-in-synced.php:708
-msgid "Media"
-msgstr ""
-
-#: includes/class-in-synced.php:459
-msgid "Configured wp-content file roots only (files-only; CLI scope key: theme)."
-msgstr ""
-
-#: includes/class-in-synced.php:459
-#: includes/class-in-synced.php:476
-#: includes/class-in-synced.php:709
-msgid "Files"
-msgstr ""
-
-#: includes/class-in-synced.php:460
-msgid "Uploads plus configured wp-content roots (CLI scope key: files)."
-msgstr ""
-
-#: includes/class-in-synced.php:460
-msgid "Media + Files"
-msgstr ""
-
-#: includes/class-in-synced.php:468
-#: includes/class-in-synced.php:564
-msgid "Database mode"
-msgstr ""
-
-#: includes/class-in-synced.php:470
-msgid "Upsert"
-msgstr ""
-
-#: includes/class-in-synced.php:471
-msgid "Replace"
-msgstr ""
-
-#: includes/class-in-synced.php:477
-msgid "Incremental files"
-msgstr ""
-
-#: includes/class-in-synced.php:481
-msgid "Preview push"
+#: includes/class-in-synced.php:466
+msgid "file(s)"
 msgstr ""
 
 #: includes/class-in-synced.php:482
-msgid "Compare Content"
+msgid "Push Console"
 msgstr ""
 
-#: includes/class-in-synced.php:483
-msgid "Push Now"
+#: includes/class-in-synced.php:484
+msgid "Complete steps 1–2 of the setup checklist above before running a push."
 msgstr ""
 
-#: includes/class-in-synced.php:494
-msgid "Push progress"
+#: includes/class-in-synced.php:486
+msgid "Quick sync scopes"
 msgstr ""
 
-#: includes/class-in-synced.php:496
-msgid "Waiting."
+#: includes/class-in-synced.php:487
+#: includes/class-in-synced.php:495
+msgid "Database, uploads, and configured wp-content roots."
 msgstr ""
 
-#: includes/class-in-synced.php:502
-msgid "For very large pushes, WP-CLI is still the most durable path:"
+#: includes/class-in-synced.php:487
+msgid "Full"
 msgstr ""
 
-#: includes/class-in-synced.php:512
-msgid "Profile Settings"
+#: includes/class-in-synced.php:488
+msgid "Database and uploads."
+msgstr ""
+
+#: includes/class-in-synced.php:488
+msgid "Content + Media"
+msgstr ""
+
+#: includes/class-in-synced.php:489
+msgid "Database only."
+msgstr ""
+
+#: includes/class-in-synced.php:489
+#: includes/class-in-synced.php:507
+#: includes/class-in-synced.php:592
+#: includes/class-in-synced.php:749
+msgid "Database"
+msgstr ""
+
+#: includes/class-in-synced.php:490
+msgid "Uploads only."
+msgstr ""
+
+#: includes/class-in-synced.php:490
+#: includes/class-in-synced.php:508
+#: includes/class-in-synced.php:750
+msgid "Media"
+msgstr ""
+
+#: includes/class-in-synced.php:491
+msgid "Configured wp-content file roots only."
+msgstr ""
+
+#: includes/class-in-synced.php:491
+#: includes/class-in-synced.php:509
+#: includes/class-in-synced.php:751
+msgid "Files"
+msgstr ""
+
+#: includes/class-in-synced.php:492
+msgid "Uploads plus configured wp-content roots."
+msgstr ""
+
+#: includes/class-in-synced.php:492
+msgid "Media + Files"
+msgstr ""
+
+#: includes/class-in-synced.php:501
+#: includes/class-in-synced.php:599
+msgid "Database mode"
+msgstr ""
+
+#: includes/class-in-synced.php:503
+msgid "Upsert"
+msgstr ""
+
+#: includes/class-in-synced.php:504
+msgid "Replace"
+msgstr ""
+
+#: includes/class-in-synced.php:510
+msgid "Incremental files"
 msgstr ""
 
 #: includes/class-in-synced.php:514
-msgid "Profile"
+msgid "Preview push"
 msgstr ""
 
-#: includes/class-in-synced.php:522
-msgid "new"
+#: includes/class-in-synced.php:515
+msgid "Compare Content"
+msgstr ""
+
+#: includes/class-in-synced.php:516
+msgid "Push Now"
+msgstr ""
+
+#: includes/class-in-synced.php:517
+msgid "Stop push"
+msgstr ""
+
+#: includes/class-in-synced.php:528
+msgid "Push progress"
 msgstr ""
 
 #: includes/class-in-synced.php:530
-msgid "New profile key"
+msgid "Waiting."
 msgstr ""
 
-#: includes/class-in-synced.php:531
-msgid "new-profile-key"
+#: includes/class-in-synced.php:533
+msgid "Push log"
 msgstr ""
 
-#: includes/class-in-synced.php:532
-msgid "New profile"
+#: includes/class-in-synced.php:536
+msgid "For very large pushes, WP-CLI is still the most durable path:"
 msgstr ""
 
-#: includes/class-in-synced.php:539
-msgid "Delete profile"
+#: includes/class-in-synced.php:547
+msgid "Profile Settings"
 msgstr ""
 
 #: includes/class-in-synced.php:549
-msgid "Name"
+msgid "Profile"
 msgstr ""
 
-#: includes/class-in-synced.php:553
-#: includes/class-in-synced.php:556
-msgid "Sync scope"
+#: includes/class-in-synced.php:557
+msgid "new"
 msgstr ""
 
-#: includes/class-in-synced.php:558
-msgid "Uploads/media"
+#: includes/class-in-synced.php:565
+msgid "New profile key"
 msgstr ""
 
-#: includes/class-in-synced.php:559
-msgid "wp-content files"
+#: includes/class-in-synced.php:566
+msgid "new-profile-key"
 msgstr ""
 
 #: includes/class-in-synced.php:567
-msgid "Upsert rows without wiping tables"
+msgid "New profile"
 msgstr ""
 
-#: includes/class-in-synced.php:568
-msgid "Replace selected tables first"
+#: includes/class-in-synced.php:574
+msgid "Delete profile"
 msgstr ""
 
-#: includes/class-in-synced.php:573
-msgid "Database scope type"
+#: includes/class-in-synced.php:584
+msgid "Name"
 msgstr ""
 
-#: includes/class-in-synced.php:576
-msgid "Selected tables"
-msgstr ""
-
-#: includes/class-in-synced.php:577
-msgid "Post type repair"
-msgstr ""
-
-#: includes/class-in-synced.php:579
-msgid "Post type repair sends posts, postmeta, comments, and taxonomy relationships for the post types below. In replace mode, matching remote posts are deleted before import."
-msgstr ""
-
-#: includes/class-in-synced.php:583
-msgid "Post types for compare/repair"
-msgstr ""
-
-#: includes/class-in-synced.php:586
-msgid "Optional for compare, required for post type repair. One post type per line, such as page, post, or a custom post type."
-msgstr ""
-
-#: includes/class-in-synced.php:590
-msgid "User tables"
-msgstr ""
-
+#: includes/class-in-synced.php:588
 #: includes/class-in-synced.php:591
-msgid "Include users and usermeta"
+msgid "Sync scope"
+msgstr ""
+
+#: includes/class-in-synced.php:593
+msgid "Uploads/media"
 msgstr ""
 
 #: includes/class-in-synced.php:594
-msgid "Included table suffixes"
+msgid "wp-content files"
 msgstr ""
 
-#: includes/class-in-synced.php:597
-msgid "Optional. When filled, only these table suffixes are synced (for example: posts, postmeta, options)."
+#: includes/class-in-synced.php:602
+msgid "Upsert rows without wiping tables"
 msgstr ""
 
-#: includes/class-in-synced.php:601
-msgid "Excluded table suffixes"
-msgstr ""
-
-#: includes/class-in-synced.php:604
-msgid "One suffix per line, without the WordPress table prefix. Example: users"
+#: includes/class-in-synced.php:603
+msgid "Replace selected tables first"
 msgstr ""
 
 #: includes/class-in-synced.php:608
-msgid "Database batch size"
+msgid "Database scope type"
+msgstr ""
+
+#: includes/class-in-synced.php:611
+msgid "Selected tables"
 msgstr ""
 
 #: includes/class-in-synced.php:612
-msgid "File incrementals"
+msgid "Post type repair"
 msgstr ""
 
-#: includes/class-in-synced.php:613
-msgid "Only send upload/file-root items modified since the previous run that pushed files"
+#: includes/class-in-synced.php:614
+msgid "Post type repair sends posts, postmeta, comments, and taxonomy relationships for the post types below. In replace mode, matching remote posts are deleted before import."
 msgstr ""
 
-#: includes/class-in-synced.php:616
-msgid "Upload include patterns"
+#: includes/class-in-synced.php:618
+msgid "Post types for compare/repair"
 msgstr ""
 
-#: includes/class-in-synced.php:619
-msgid "Optional. One glob or folder per line. Leave empty to include all uploads."
+#: includes/class-in-synced.php:621
+msgid "Optional for compare, required for post type repair. One post type per line, such as page, post, or a custom post type."
 msgstr ""
 
-#: includes/class-in-synced.php:623
-msgid "Upload excludes"
+#: includes/class-in-synced.php:625
+msgid "User tables"
 msgstr ""
 
-#: includes/class-in-synced.php:627
-msgid "wp-content file roots"
+#: includes/class-in-synced.php:626
+msgid "Users and usermeta are always excluded from sync."
 msgstr ""
 
-#: includes/class-in-synced.php:634
-msgid "File excludes"
+#: includes/class-in-synced.php:629
+msgid "Included table suffixes"
 msgstr ""
 
-#: includes/class-in-synced.php:638
-msgid "Save profile"
+#: includes/class-in-synced.php:632
+msgid "Optional. When filled, only these table suffixes are synced (for example: posts, postmeta, options)."
+msgstr ""
+
+#: includes/class-in-synced.php:636
+msgid "Excluded table suffixes"
+msgstr ""
+
+#: includes/class-in-synced.php:639
+msgid "One suffix per line, without the WordPress table prefix. Example: users"
 msgstr ""
 
 #: includes/class-in-synced.php:643
-msgid "Help & Notes"
+msgid "Database batch size"
 msgstr ""
 
-#: includes/class-in-synced.php:644
-msgid "Pairing"
-msgstr ""
-
-#: includes/class-in-synced.php:645
-msgid "Install and activate this plugin on both sites, then use the same long shared secret (32+ characters) on both. Set the remote admin/API URL on the sending site only. Requests are signed and must arrive within five minutes of the receiver clock."
-msgstr ""
-
-#: includes/class-in-synced.php:646
-msgid "Scopes"
+#: includes/class-in-synced.php:647
+msgid "File incrementals"
 msgstr ""
 
 #: includes/class-in-synced.php:648
-msgid "Full: database, uploads, and configured wp-content roots."
-msgstr ""
-
-#: includes/class-in-synced.php:649
-msgid "Content + Media: database and uploads."
-msgstr ""
-
-#: includes/class-in-synced.php:650
-msgid "Database: database only."
+msgid "Only send upload/file-root items modified since the previous run that pushed files"
 msgstr ""
 
 #: includes/class-in-synced.php:651
-msgid "Media: uploads only."
+msgid "Upload include patterns"
 msgstr ""
 
-#: includes/class-in-synced.php:652
-msgid "Files: configured wp-content file roots only. The CLI scope key for this files-only scope is still \"theme\"."
+#: includes/class-in-synced.php:654
+msgid "Optional. One glob or folder per line. Leave empty to include all uploads."
 msgstr ""
 
-#: includes/class-in-synced.php:653
-msgid "Media + Files: uploads plus configured wp-content roots. The CLI scope key is \"files\"."
-msgstr ""
-
-#: includes/class-in-synced.php:655
-msgid "Replace mode and backups"
-msgstr ""
-
-#: includes/class-in-synced.php:656
-msgid "Replace mode clears (TRUNCATEs) the selected tables on the receiver before importing. The receiver writes a SQL backup under wp-content/uploads/in-synced-backups/ first and aborts the push if the backup cannot be created. The newest 5 backups are kept and web access to the folder is blocked. Backups are a manual restore aid, not an automated rollback."
-msgstr ""
-
-#: includes/class-in-synced.php:657
-msgid "Repairing interrupted content pushes"
-msgstr ""
-
-#: includes/class-in-synced.php:659
-msgid "Set \"Database scope type\" to \"Post type repair\"."
-msgstr ""
-
-#: includes/class-in-synced.php:660
-msgid "List the affected post types under \"Post types for compare/repair\"."
-msgstr ""
-
-#: includes/class-in-synced.php:661
-msgid "Click \"Compare Content\" to inspect local vs remote counts."
+#: includes/class-in-synced.php:658
+msgid "Upload excludes"
 msgstr ""
 
 #: includes/class-in-synced.php:662
-msgid "Push with only Database selected and replace mode to overwrite just those post types."
-msgstr ""
-
-#: includes/class-in-synced.php:664
-msgid "Troubleshooting"
-msgstr ""
-
-#: includes/class-in-synced.php:666
-msgid "\"Invalid signature\" (401): the shared secrets differ between the two sites."
-msgstr ""
-
-#: includes/class-in-synced.php:667
-msgid "\"Timestamp outside the allowed window\" (401): the server clocks differ by more than five minutes."
-msgstr ""
-
-#: includes/class-in-synced.php:668
-msgid "\"Database/media/file receiving is disabled\" (403): enable the matching receiver permission on the other site."
+msgid "wp-content file roots"
 msgstr ""
 
 #: includes/class-in-synced.php:669
-msgid "User tables (users, usermeta) are never imported from a paired site, even when they are listed on the sender."
+msgid "File excludes"
+msgstr ""
+
+#: includes/class-in-synced.php:673
+msgid "Save profile"
+msgstr ""
+
+#: includes/class-in-synced.php:678
+msgid "Help & Notes"
+msgstr ""
+
+#: includes/class-in-synced.php:679
+msgid "Pairing"
+msgstr ""
+
+#: includes/class-in-synced.php:680
+msgid "Install and activate this plugin on both sites, then use the same long shared secret (32+ characters) on both. Set the remote admin/API URL on the sending site only. Requests are signed and must arrive within five minutes of the receiver clock."
+msgstr ""
+
+#: includes/class-in-synced.php:681
+msgid "Scopes"
 msgstr ""
 
 #: includes/class-in-synced.php:683
-msgid "Building preview..."
+msgid "Full: database, uploads, and configured wp-content roots."
 msgstr ""
 
 #: includes/class-in-synced.php:684
-msgid "Preview ready."
+msgid "Content + Media: database and uploads."
 msgstr ""
 
 #: includes/class-in-synced.php:685
-msgid "Preview failed."
+msgid "Database: database only."
 msgstr ""
 
 #: includes/class-in-synced.php:686
-msgid "Comparing local and remote content..."
+msgid "Media: uploads only."
 msgstr ""
 
 #: includes/class-in-synced.php:687
-msgid "Compare ready."
+msgid "Files: configured wp-content file roots only. The CLI scope key is \"files\" (legacy alias: \"theme\")."
 msgstr ""
 
 #: includes/class-in-synced.php:688
-msgid "Compare failed."
-msgstr ""
-
-#: includes/class-in-synced.php:689
-msgid "Push running..."
+msgid "Media + Files: uploads plus configured wp-content roots. The CLI scope key is \"media_files\"."
 msgstr ""
 
 #: includes/class-in-synced.php:690
-msgid "Push complete."
+msgid "Replace mode and backups"
 msgstr ""
 
 #: includes/class-in-synced.php:691
-msgid "Push failed."
+msgid "Replace mode clears selected receiver tables only after a complete verified SQL backup is written outside the public web root. Backups default to in-synced-private-backups beside WordPress; configure IN_SYNCED_BACKUP_DIR if needed. The newest five completed backups are retained. Pause receiver edits/background jobs during replacement. Stop push keeps completed changes; restore backups manually when needed."
 msgstr ""
 
 #: includes/class-in-synced.php:692
-msgid "Push request failed. Check the latest progress log."
+msgid "Every media/file push also needs writable private staging, even with database replace disabled. Private storage must share the target filesystem so verified files can be replaced atomically. Configure a private IN_SYNCED_BACKUP_DIR on that filesystem if the default path is unavailable."
 msgstr ""
 
 #: includes/class-in-synced.php:693
-#: includes/class-in-synced.php:1182
-msgid "Starting sync."
-msgstr ""
-
-#: includes/class-in-synced.php:694
-msgid "Sync complete."
+msgid "Repairing interrupted content pushes"
 msgstr ""
 
 #: includes/class-in-synced.php:695
-msgid "Sync failed."
+msgid "Set \"Database scope type\" to \"Post type repair\"."
 msgstr ""
 
 #: includes/class-in-synced.php:696
-msgid "Push cancelled."
+msgid "List the affected post types under \"Post types for compare/repair\"."
 msgstr ""
 
 #: includes/class-in-synced.php:697
+msgid "Click \"Compare Content\" to inspect local vs remote counts."
+msgstr ""
+
+#: includes/class-in-synced.php:698
+msgid "Push with only Database selected and replace mode to overwrite just those post types."
+msgstr ""
+
+#: includes/class-in-synced.php:700
+msgid "Troubleshooting"
+msgstr ""
+
+#: includes/class-in-synced.php:702
+msgid "\"Invalid signature\" (401): the shared secrets differ between the two sites."
+msgstr ""
+
+#: includes/class-in-synced.php:703
+msgid "\"Timestamp outside the allowed window\" (401): the server clocks differ by more than five minutes."
+msgstr ""
+
+#: includes/class-in-synced.php:704
+msgid "\"Database/media/file receiving is disabled\" (403): enable the matching receiver permission on the other site."
+msgstr ""
+
+#: includes/class-in-synced.php:705
+msgid "User tables (users, usermeta) are never imported from a paired site, even when they are listed on the sender."
+msgstr ""
+
+#: includes/class-in-synced.php:722
+msgid "Building preview..."
+msgstr ""
+
+#: includes/class-in-synced.php:723
+msgid "Preview ready."
+msgstr ""
+
+#: includes/class-in-synced.php:724
+msgid "Preview failed."
+msgstr ""
+
+#: includes/class-in-synced.php:725
+msgid "Comparing local and remote content..."
+msgstr ""
+
+#: includes/class-in-synced.php:726
+msgid "Compare ready."
+msgstr ""
+
+#: includes/class-in-synced.php:727
+msgid "Compare failed."
+msgstr ""
+
+#: includes/class-in-synced.php:728
+msgid "Stop requested. Completed changes remain on the receiver."
+msgstr ""
+
+#: includes/class-in-synced.php:729
+msgid "The stop request failed. Retry while the run is active."
+msgstr ""
+
+#: includes/class-in-synced.php:730
+msgid "Your browser cannot generate a secure secret. Use a password manager to generate at least 32 random characters."
+msgstr ""
+
+#: includes/class-in-synced.php:731
+msgid "Push running..."
+msgstr ""
+
+#: includes/class-in-synced.php:732
+msgid "Push complete."
+msgstr ""
+
+#: includes/class-in-synced.php:733
+msgid "Push failed."
+msgstr ""
+
+#: includes/class-in-synced.php:734
+msgid "Push request failed. Check the latest progress log."
+msgstr ""
+
+#: includes/class-in-synced.php:735
+#: includes/class-in-synced.php:1310
+msgid "Starting sync."
+msgstr ""
+
+#: includes/class-in-synced.php:736
+msgid "Sync complete."
+msgstr ""
+
+#: includes/class-in-synced.php:737
+msgid "Sync failed."
+msgstr ""
+
+#: includes/class-in-synced.php:738
+msgid "Push cancelled."
+msgstr ""
+
+#: includes/class-in-synced.php:739
 msgid "the remote site"
 msgstr ""
 
 #. translators: %s: remote site URL.
-#: includes/class-in-synced.php:699
+#: includes/class-in-synced.php:741
 #, php-format
 msgid "Push the selected scope to %s now?"
 msgstr ""
 
 #. translators: %s: remote site URL.
-#: includes/class-in-synced.php:701
+#: includes/class-in-synced.php:743
 #, php-format
 msgid "This will DROP/TRUNCATE data on %s. Type REPLACE to confirm."
 msgstr ""
 
-#: includes/class-in-synced.php:702
+#: includes/class-in-synced.php:744
 msgid "Delete this profile? This cannot be undone."
 msgstr ""
 
-#: includes/class-in-synced.php:703
+#: includes/class-in-synced.php:745
 msgid "Copied"
 msgstr ""
 
-#: includes/class-in-synced.php:704
+#: includes/class-in-synced.php:746
 msgid "Copy failed. The secret is selected — press Ctrl+C or Cmd+C to copy it."
 msgstr ""
 
-#: includes/class-in-synced.php:706
+#: includes/class-in-synced.php:748
 msgid "Replace mode TRUNCATEs the selected remote tables before import. The push aborts if the receiver cannot write a backup first."
 msgstr ""
 
-#: includes/class-in-synced.php:710
+#: includes/class-in-synced.php:752
 msgid "Post Types"
 msgstr ""
 
-#: includes/class-in-synced.php:711
+#: includes/class-in-synced.php:753
 msgid "Tables"
 msgstr ""
 
-#: includes/class-in-synced.php:713
+#: includes/class-in-synced.php:755
 msgid "Connected"
 msgstr ""
 
-#: includes/class-in-synced.php:714
+#: includes/class-in-synced.php:756
 msgid "Compare complete."
 msgstr ""
 
-#: includes/class-in-synced.php:1029
+#. translators: %s: row count.
+#: includes/class-in-synced.php:758
+#, php-format
+msgid "%s rows"
+msgstr ""
+
+#. translators: %1$s: row count, %2$s: database mode.
+#: includes/class-in-synced.php:760
+#, php-format
+msgid "%1$s rows in %2$s mode"
+msgstr ""
+
+#. translators: %1$s: file size, %2$s: UTC date.
+#: includes/class-in-synced.php:762
+#, php-format
+msgid "%1$s since %2$s"
+msgstr ""
+
+#. translators: %1$s: local count, %2$s: remote count, %3$s: difference.
+#: includes/class-in-synced.php:764
+#, php-format
+msgid "Local %1$s, remote %2$s, difference %3$s"
+msgstr ""
+
+#. translators: %1$s: local count, %2$s: remote count.
+#: includes/class-in-synced.php:766
+#, php-format
+msgid "Local %1$s, remote %2$s"
+msgstr ""
+
+#: includes/class-in-synced.php:1125
 msgid "Settings saved."
 msgstr ""
 
-#: includes/class-in-synced.php:1030
+#: includes/class-in-synced.php:1129
 msgid "Profile saved."
 msgstr ""
 
-#: includes/class-in-synced.php:1031
+#: includes/class-in-synced.php:1133
 msgid "Profile deleted."
 msgstr ""
 
-#: includes/class-in-synced.php:1032
+#: includes/class-in-synced.php:1137
 msgid "The default profile cannot be deleted."
 msgstr ""
 
-#: includes/class-in-synced.php:1033
+#: includes/class-in-synced.php:1141
 msgid "Connection OK."
 msgstr ""
 
-#: includes/class-in-synced.php:1034
+#: includes/class-in-synced.php:1145
 msgid "Connection failed. Details are in the log below."
 msgstr ""
 
 #. translators: %s: error message returned by the remote site.
-#: includes/class-in-synced.php:1128
+#: includes/class-in-synced.php:1251
 #, php-format
 msgid "Connection failed: %s"
 msgstr ""
 
 #. translators: %s: remote site URL.
-#: includes/class-in-synced.php:1131
+#: includes/class-in-synced.php:1254
 #, php-format
 msgid "Connected to remote site: %s"
 msgstr ""
 
 #. translators: %1$s: database permission, %2$s: media permission, %3$s: files permission.
-#: includes/class-in-synced.php:1134
+#: includes/class-in-synced.php:1257
 #, php-format
 msgid "Receiver permissions: database=%1$s, media=%2$s, files=%3$s"
 msgstr ""
 
-#: includes/class-in-synced.php:1197
+#: includes/class-in-synced.php:1330
+#: includes/class-in-synced.php:1786
 msgid "Sync completed."
 msgstr ""
 
-#: includes/class-in-synced.php:2238
-#: includes/class-in-synced.php:2247
+#: includes/class-in-synced.php:1342
+msgid "This run is not active or does not belong to you."
+msgstr ""
+
+#: includes/class-in-synced.php:1345
+msgid "Stop requested. The current request will finish first; completed changes remain on the receiver."
+msgstr ""
+
+#: includes/class-in-synced.php:1351
+msgid "A valid database session ID is required."
+msgstr ""
+
+#: includes/class-in-synced.php:1363
+msgid "Another sync owns this site. Wait for it to finish or for its 15-minute lease to expire."
+msgstr ""
+
+#: includes/class-in-synced.php:1378
+msgid "Another sync claimed this site first. Retry after it finishes."
+msgstr ""
+
+#: includes/class-in-synced.php:1384
+msgid "The sync lease changed. The push stopped."
+msgstr ""
+
+#: includes/class-in-synced.php:1413
+msgid "The receive session is missing or expired. Start a new push."
+msgstr ""
+
+#: includes/class-in-synced.php:1488
+#: includes/class-in-synced.php:2894
+msgid "Remote URL is not configured."
+msgstr ""
+
+#: includes/class-in-synced.php:1492
+msgid "Shared secret is missing or shorter than 32 characters."
+msgstr ""
+
+#: includes/class-in-synced.php:1499
+msgid "Post type repair needs at least one post type in the profile."
+msgstr ""
+
+#: includes/class-in-synced.php:1541
+msgid "Uploads directory was not found."
+msgstr ""
+
+#: includes/class-in-synced.php:1550
+#: includes/class-in-synced.php:2183
+msgid "No wp-content file roots are configured."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:1557
+#, php-format
+msgid "File root was not found: wp-content/%s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:1641
+#, php-format
+msgid "Starting profile \"%1$s\" at %2$s"
+msgstr ""
+
+#: includes/class-in-synced.php:1647
+msgid "Testing the remote connection."
+msgstr ""
+
+#: includes/class-in-synced.php:1670
+msgid "The receiver identifies as this site. Syncing a site to itself is refused."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:1780
+#, php-format
+msgid "Sync completed at %s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:1814
+#, php-format
+msgid "Database: preparing %1$s table(s) in %2$s mode."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:1821
+#, php-format
+msgid "Preparing %s database table(s)."
+msgstr ""
+
+#: includes/class-in-synced.php:1834
+#: includes/class-in-synced.php:2016
+msgid "Source row counts could not be read. No destructive preparation was sent."
+msgstr ""
+
+#: includes/class-in-synced.php:1857
+msgid "Replace mode was aborted: the receiver did not confirm a database backup before truncating tables."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:1860
+#, php-format
+msgid "Database: receiver backup saved at %s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:1871
+#, php-format
+msgid "Database: sending %1$s (%2$s rows)."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:1878
+#, php-format
+msgid "Sending %1$s (%2$s rows)."
+msgstr ""
+
+#: includes/class-in-synced.php:1891
+#: includes/class-in-synced.php:2063
+msgid "A source database batch could not be read. The push stopped."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:1918
+#, php-format
+msgid "Sent %1$s of %2$s database row(s)."
+msgstr ""
+
+#: includes/class-in-synced.php:1931
+msgid "Database: complete."
+msgstr ""
+
+#: includes/class-in-synced.php:1937
+msgid "Database sync complete."
+msgstr ""
+
+#: includes/class-in-synced.php:1952
+msgid "Post type repair requires at least one post type in the profile."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:1968
+#, php-format
+msgid "Content repair: preparing post types %1$s in %2$s mode."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:1975
+#, php-format
+msgid "Preparing post type repair for %s."
+msgstr ""
+
+#: includes/class-in-synced.php:1988
+msgid "The source database could not be read for repair preflight."
+msgstr ""
+
+#: includes/class-in-synced.php:2041
+msgid "Replace mode was aborted: the receiver did not confirm a database backup before deleting content."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2044
+#, php-format
+msgid "Content repair: receiver backup saved at %s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:2054
+#, php-format
+msgid "Content repair: sending %1$s (%2$s rows)."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:2091
+#, php-format
+msgid "Sent %1$s of %2$s repair row(s)."
+msgstr ""
+
+#: includes/class-in-synced.php:2104
+msgid "Content repair: complete."
+msgstr ""
+
+#: includes/class-in-synced.php:2110
+msgid "Post type repair complete."
+msgstr ""
+
+#: includes/class-in-synced.php:2122
+msgid "Uploads: no upload directory found."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:2142
+#, php-format
+msgid "Uploads: sending %1$s file(s)%2$s."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2149
+#, php-format
+msgid "Preparing %s upload file(s)."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail, %3$s: sync detail.
+#: includes/class-in-synced.php:2170
+#, php-format
+msgid "Sent upload file %1$s of %2$s: %3$s"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2195
+#, php-format
+msgid "File root not found: wp-content/%s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail, %3$s: sync detail.
+#: includes/class-in-synced.php:2207
+#, php-format
+msgid "Files: sending %1$s root(s), %2$s file(s)%3$s."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2214
+#, php-format
+msgid "Preparing %s wp-content file(s)."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail, %3$s: sync detail, %4$s: sync detail.
+#: includes/class-in-synced.php:2235
+#, php-format
+msgid "Sent wp-content file %1$s of %2$s: %3$s/%4$s"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2255
+#, php-format
+msgid "Could not read file: %s"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2266
+#, php-format
+msgid "Could not read file chunk: %s"
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail.
+#: includes/class-in-synced.php:2301
+#, php-format
+msgid "File: %1$s%2$s"
+msgstr ""
+
+#: includes/class-in-synced.php:2310
+msgid "The receiver has not enabled every selected sync scope."
+msgstr ""
+
+#: includes/class-in-synced.php:2320
+msgid "This sync session does not own the receive lease."
+msgstr ""
+
+#: includes/class-in-synced.php:2348
+#: includes/class-in-synced.php:2460
+#: includes/class-in-synced.php:2578
+#: includes/class-in-synced.php:2596
+#: includes/class-in-synced.php:2706
+msgid "Database receiving is disabled on this site."
+msgstr ""
+
+#: includes/class-in-synced.php:2355
+#: includes/class-in-synced.php:2467
+#: includes/class-in-synced.php:2602
+msgid "A valid source table prefix is required."
+msgstr ""
+
+#: includes/class-in-synced.php:2361
+#: includes/class-in-synced.php:2478
+msgid "A manifest must contain between 1 and 500 tables."
+msgstr ""
+
+#: includes/class-in-synced.php:2365
+#: includes/class-in-synced.php:2482
+msgid "Invalid table manifest."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2372
+#: includes/class-in-synced.php:2489
+#: includes/class-in-synced.php:2617
+#, php-format
+msgid "User tables are not accepted by this receiver: %s"
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2377
+#: includes/class-in-synced.php:2494
+#: includes/class-in-synced.php:2622
+#, php-format
+msgid "Table is outside the WordPress prefix: %s"
+msgstr ""
+
+#: includes/class-in-synced.php:2382
+#: includes/class-in-synced.php:2499
+msgid "This table schema is unsupported or unsafe. Exclude the table or simplify its schema before syncing."
+msgstr ""
+
+#. translators: %s: database table name.
+#: includes/class-in-synced.php:2391
+#: includes/class-in-synced.php:2508
+#, php-format
+msgid "Schema mismatch for %s. Update the receiver schema before syncing; no tables were cleared."
+msgstr ""
+
+#. translators: %s: database table name.
+#: includes/class-in-synced.php:2413
+#: includes/class-in-synced.php:2530
+#, php-format
+msgid "Could not create table: %s"
+msgstr ""
+
+#: includes/class-in-synced.php:2423
+msgid "Replace mode was aborted: a database backup could not be created before truncating tables. Configure a writable private IN_SYNCED_BACKUP_DIR outside the public web root and retry."
+msgstr ""
+
+#: includes/class-in-synced.php:2440
+msgid "The receiver could not clear a table. Stop and restore the reported backup before retrying."
+msgstr ""
+
+#: includes/class-in-synced.php:2474
+msgid "No post types were provided for content repair."
+msgstr ""
+
+#: includes/class-in-synced.php:2551
+msgid "Replace mode was aborted: the request did not include any content tables (posts, postmeta, comments, commentmeta, term relationships) to back up before deleting content."
+msgstr ""
+
+#: includes/class-in-synced.php:2557
+msgid "Replace mode was aborted: a database backup could not be created before deleting content. Configure a writable private IN_SYNCED_BACKUP_DIR outside the public web root and retry."
+msgstr ""
+
+#: includes/class-in-synced.php:2608
+msgid "A database batch may contain at most 1,000 rows."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2627
+#, php-format
+msgid "Table has not been prepared: %s"
+msgstr ""
+
+#: includes/class-in-synced.php:2635
+msgid "This table was not prepared by the current database session."
+msgstr ""
+
+#: includes/class-in-synced.php:2638
+msgid "The batch does not match the prepared content repair scope."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2643
+#, php-format
+msgid "Could not read the column list for table: %s"
+msgstr ""
+
+#: includes/class-in-synced.php:2649
+#: includes/class-in-synced.php:2667
+msgid "Sync state and transient options cannot be imported."
+msgstr ""
+
+#: includes/class-in-synced.php:2652
+msgid "A database row contains columns missing from the receiver. Update its schema before syncing."
+msgstr ""
+
+#: includes/class-in-synced.php:2687
+msgid "The receiver could not import a row without database warnings. The push stopped; inspect its backup before retrying."
+msgstr ""
+
+#: includes/class-in-synced.php:2712
+msgid "This database session does not own the receive lease."
+msgstr ""
+
+#: includes/class-in-synced.php:2727
+msgid "Media receiving is disabled on this site."
+msgstr ""
+
+#: includes/class-in-synced.php:2731
+msgid "File receiving is disabled on this site."
+msgstr ""
+
+#: includes/class-in-synced.php:2736
+msgid "Invalid relative file path."
+msgstr ""
+
+#: includes/class-in-synced.php:2746
+msgid "Theme directory is not allowed on this receiver."
+msgstr ""
+
+#. translators: %s: sync detail.
+#: includes/class-in-synced.php:2753
+#, php-format
+msgid "File root is not allowed on this receiver: %s"
+msgstr ""
+
+#: includes/class-in-synced.php:2757
+msgid "Invalid file target."
+msgstr ""
+
+#: includes/class-in-synced.php:2765
+msgid "Executable files, server configuration, dotfiles and backup files cannot be synced into uploads."
+msgstr ""
+
+#: includes/class-in-synced.php:2776
+msgid "The approved file root contains a symlink."
+msgstr ""
+
+#: includes/class-in-synced.php:2779
+msgid "The approved file root resolves outside wp-content or is a symlink."
+msgstr ""
+
+#: includes/class-in-synced.php:2783
+msgid "Could not create target root."
+msgstr ""
+
+#: includes/class-in-synced.php:2786
+msgid "The file path contains a symlink or escapes its approved root."
+msgstr ""
+
+#: includes/class-in-synced.php:2796
+msgid "Invalid file metadata or file/chunk size limit exceeded."
+msgstr ""
+
+#: includes/class-in-synced.php:2801
+msgid "Invalid or oversized file chunk."
+msgstr ""
+
+#: includes/class-in-synced.php:2804
+msgid "Could not create target directory."
+msgstr ""
+
+#: includes/class-in-synced.php:2807
+msgid "The target path changed during directory creation."
+msgstr ""
+
+#: includes/class-in-synced.php:2811
+msgid "File receiving requires writable private staging outside the public web roots on the same filesystem as the target. Configure IN_SYNCED_BACKUP_DIR with a suitable private directory. The existing file was preserved."
+msgstr ""
+
+#: includes/class-in-synced.php:2835
+msgid "The file transfer expired or was not started. Retry the file push."
+msgstr ""
+
+#: includes/class-in-synced.php:2845
+msgid "Could not lock the staged file for writing."
+msgstr ""
+
+#: includes/class-in-synced.php:2854
+msgid "The file chunk could not be written completely at its expected offset. Retry the file push."
+msgstr ""
+
+#: includes/class-in-synced.php:2864
+msgid "The staged file failed size, hash or path verification. The existing file was preserved."
+msgstr ""
+
+#: includes/class-in-synced.php:2874
+msgid "Could not atomically replace the target file. Private staging and the target must remain on the same filesystem; check IN_SYNCED_BACKUP_DIR. The existing file was preserved."
+msgstr ""
+
+#: includes/class-in-synced.php:2898
+msgid "The remote URL must use HTTPS. HTTP requires an explicit IN_SYNCED_ALLOW_INSECURE_HTTP development override."
+msgstr ""
+
+#: includes/class-in-synced.php:2901
+msgid "Shared secret is not configured."
+msgstr ""
+
+#: includes/class-in-synced.php:2906
+msgid "Push stopped. Completed changes remain on the receiver; use its backup to restore database changes."
+msgstr ""
+
+#: includes/class-in-synced.php:2922
+msgid "The request could not be encoded as JSON. Check table schema text and reduce the batch size."
+msgstr ""
+
+#: includes/class-in-synced.php:2958
+msgid "The receiver redirected the signed request. Set the remote URL to its final HTTPS address; redirects are refused."
+msgstr ""
+
+#. translators: %1$s: sync detail, %2$s: sync detail, %3$s: sync detail.
+#: includes/class-in-synced.php:2976
+#, php-format
+msgid "Remote %1$s failed (%2$s): %3$s"
+msgstr ""
+
+#: includes/class-in-synced.php:2980
+msgid "The receiver returned an invalid sync acknowledgement."
+msgstr ""
+
+#: includes/class-in-synced.php:2983
+msgid "The receiver did not import every row. The push stopped to prevent a false success report."
+msgstr ""
+
+#: includes/class-in-synced.php:2990
+#: includes/class-in-synced.php:2998
 msgid "You do not have permission to manage In Synced."
 msgstr ""
 
-#: includes/class-in-synced.php:2401
+#: includes/class-in-synced.php:3075
+msgid "No progress has been recorded for this run."
+msgstr ""
+
+#: includes/class-in-synced.php:3157
 msgid "yes"
 msgstr ""
 
-#: includes/class-in-synced.php:2401
+#: includes/class-in-synced.php:3157
 msgid "no"
+msgstr ""
+
+#: includes/class-in-synced.php:3416
+msgid "Repair stopped: a source row ID belongs to unrelated receiver content. Use sites with matching ID lineage or resolve the collision first."
+msgstr ""
+
+#: includes/class-in-synced.php:3467
+msgid "Content repair deletion failed. Restore the reported backup before retrying."
 msgstr ""

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<phpunit bootstrap="tests/unit-bootstrap.php" colors="true" failOnWarning="true">
+  <testsuites><testsuite name="Transport safety"><directory>tests/unit</directory></testsuite></testsuites>
+</phpunit>

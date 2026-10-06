@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ruleset name="In Synced">
+  <description>WordPress standards and PHP compatibility. Dynamic SQL and native atomic file operations require reviewed local annotations.</description>
+  <file>in-synced.php</file><file>uninstall.php</file><file>includes</file>
+  <arg name="extensions" value="php"/><arg value="sp"/>
+  <rule ref="WordPress"/>
+  <rule ref="PHPCompatibilityWP"/>
+  <config name="testVersion" value="7.2-"/>
+  <config name="minimum_supported_wp_version" value="5.5"/>
+  <rule ref="WordPress.WP.I18n"><properties><property name="text_domain" type="array"><element value="in-synced"/></property></properties></rule>
+  <rule ref="WordPress.NamingConventions.PrefixAllGlobals"><properties><property name="prefixes" type="array"><element value="in_synced"/><element value="In_Synced"/><element value="IN_SYNCED"/></property></properties></rule>
+  <!-- Existing typed private methods remain intentionally concise; enforce security and i18n checks. -->
+  <rule ref="Squiz.Commenting.FunctionComment"><exclude name="Squiz.Commenting.FunctionComment.Missing"/></rule>
+  <rule ref="Squiz.Commenting.VariableComment"><exclude name="Squiz.Commenting.VariableComment.Missing"/></rule>
+  <rule ref="WordPress.PHP.YodaConditions"><exclude name="WordPress.PHP.YodaConditions.NotYoda"/></rule>
+  <rule ref="Universal.Operators.DisallowShortTernary"><exclude name="Universal.Operators.DisallowShortTernary.Found"/></rule>
+  <!-- Sync reads bypass caches by design; leases must see changes from other workers. -->
+  <rule ref="WordPress.DB.DirectDatabaseQuery"><exclude name="WordPress.DB.DirectDatabaseQuery.DirectQuery"/><exclude name="WordPress.DB.DirectDatabaseQuery.NoCaching"/></rule>
+  <rule ref="WordPress.Security.NonceVerification"><properties><property name="customNonceVerificationFunctions" type="array"><element value="require_admin_action"/><element value="require_ajax_action"/></property></properties></rule>
+  <rule ref="WordPress.Security.ValidatedSanitizedInput"><properties><property name="customSanitizingFunctions" type="array"><element value="sanitize_shared_secret"/></property><property name="customUnslashingSanitizingFunctions" type="array"><element value="sanitize_theme_slug"/><element value="sanitize_file_roots_text"/></property></properties></rule>
+</ruleset>

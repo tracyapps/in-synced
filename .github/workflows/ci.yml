@@ -1,0 +1,49 @@
+name: Plugin checks
+on: [push, pull_request]
+jobs:
+  safety:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.1', '8.2', '8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist
+      - run: find . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: composer test
+      - run: composer lint
+  wordpress:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports: ['3306:3306']
+        options: --health-cmd="mysqladmin ping -proot" --health-interval=10s --health-timeout=5s --health-retries=5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli
+          tools: composer:v2, wp-cli
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist
+      - name: Install disposable WordPress test database
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-develop/tests/phpunit
+        run: |
+          git clone --depth 1 --branch 7.1.2 https://github.com/WordPress/wordpress-develop.git /tmp/wordpress-develop
+          wp core download --version=7.1.2 --path=/tmp/wordpress-core --force
+          mysql -h127.0.0.1 -uroot -proot -e 'CREATE DATABASE in_synced_tests'
+          cp /tmp/wordpress-develop/wp-tests-config-sample.php /tmp/wordpress-develop/wp-tests-config.php
+          php tests/configure-ci.php /tmp/wordpress-develop/wp-tests-config.php /tmp/wordpress-core/
+      - run: composer test:integration
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-develop/tests/phpunit

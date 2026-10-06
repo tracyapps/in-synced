@@ -1,5 +1,4 @@
-node_modules/
+/vendor/
+.phpunit.result.cache
+*.zip
 .DS_Store
-*.map
-npm-debug.log
-yarn-error.log

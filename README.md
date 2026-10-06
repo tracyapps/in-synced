@@ -1,110 +1,87 @@
 # In Synced
 
-Reusable WordPress sync tooling for pushing selected local changes to a paired staging or production WordPress install when the host does not provide a good sync path.
-
-## What It Does
-
-- Pairs two WordPress installs with a shared secret and HMAC-signed REST requests.
-- Pushes selected database tables in batches.
-- Supports table include and exclude lists for partial content syncs.
-- Compares local and remote post type counts before a repair push.
-- Supports targeted post type repair syncs for interrupted content pushes.
-- Rewrites local URLs to remote URLs, including inside serialized WordPress values.
-- Transfers uploads/media files in chunks, with include and exclude patterns.
-- Transfers explicit `wp-content` file roots such as a theme or custom plugin.
-- Saves profiles for repeatable pushes and incremental file syncs.
-- Incremental file pushes use the last run that actually pushed files; pass `--all-files` to force a full file pass.
-- Previews table counts, row counts, file counts, sizes, and sample paths before pushing.
-- Shows admin progress while a push is running.
-- Preserves the receiver's `in_synced_*` options during database replacement so pairing survives.
-- Creates a randomized SQL backup under `wp-content/uploads/in-synced-backups/` before a replace-mode database push, aborts the push if a restorable backup cannot be written (a dump with no table data counts as a failure), and keeps the newest five backups with web access to the folder blocked.
+Push selected database tables, uploads and explicit wp-content roots between trusted, paired WordPress sites. Intended for staging sites cloned from the same installation. Review a preview, test the receiver and keep a separate host backup before replacing production data.
 
 ## Setup
 
-1. Install and activate this plugin on both sites.
-2. Open `Tools > In Synced` on both sites.
-3. Use the same long shared secret on both sites.
-4. On the sending site, set the remote URL and find/replace URLs.
-5. On the receiving site, enable only the receiver permissions you want.
-6. On the receiving site, list allowed `wp-content` roots, for example:
+1. Install version 0.2.0 on **both** sites. Version 0.1 signatures are refused; there is no insecure fallback.
+2. Open Tools → In Synced. Configure the same random secret of at least 32 characters on both peers, or set `IN_SYNCED_SHARED_SECRET` in wp-config.php. Leave the password field blank to retain a stored secret.
+3. On the sender, configure the receiver's final HTTPS URL, local public URL and receiver public URL for replacements. The receiver needs working WordPress REST routing/pretty permalinks. Redirects are refused.
+4. On the receiver, enable only the needed database, media and file permissions. Configure exact allowed roots such as `themes/my-theme` or `plugins/my-custom-plugin`. Approving code roots gives the paired secret holder permission to replace executable code; pair only sites you fully trust.
+5. For database replace and **every media/file push**, configure writable private storage outside every public web root. The default is `in-synced-private-backups/<site-hash>/` beside the WordPress directory. File staging also requires this directory to share a filesystem with the receiving uploads/code root. Use an absolute path if that parent is unwritable or on another filesystem:
 
-```text
-themes/my-theme
-plugins/my-custom-plugin
+```php
+define('IN_SYNCED_SHARED_SECRET', 'a-long-random-secret-of-at-least-32-characters');
+define('IN_SYNCED_BACKUP_DIR', '/private/path/wordpress-sync-backups');
 ```
 
-## Partial Sync Controls
+The plugin rejects storage within the known WordPress, content, plugin, must-use plugin, theme and uploads roots, plus the server's document root when available, including canonical symlink aliases. If WordPress is installed in a subdirectory of the document root, its default sibling storage can still be publicly served and will be refused; configure `IN_SYNCED_BACKUP_DIR` outside that document root. WP-CLI may not provide a document root, so known WordPress roots are still checked and the operator must ensure the custom path is outside every served directory/alias. Apache deny files are defense in depth; nginx and IIS do not honor .htaccess. Old backups under uploads/in-synced-backups are retained; move those outside the web root or deny access in your server configuration.
 
-Quick scopes:
+For isolated LocalWP development only, `define('IN_SYNCED_ALLOW_INSECURE_HTTP', true);` permits an HTTP receiver. HTTP exposes transferred database credentials and file contents; leave this override absent on public servers.
 
-- `Full`: database, uploads, and configured files.
-- `Content + Media`: database and uploads.
-- `Database`: database only.
-- `Media`: uploads only.
-- `Files`: configured `wp-content` roots only.
-- `Media + Files`: uploads and configured file roots.
+## Scopes and profiles
 
-Profile filters:
+| Scope | Transfers |
+|---|---|
+| `full` | Database, uploads and configured roots |
+| `content_media` | Database and uploads |
+| `database` | Database only |
+| `media` | Uploads only |
+| `files` | Configured wp-content roots only |
+| `media_files` | Uploads and configured roots |
 
-- `Included table suffixes`: when filled, only these database tables sync.
-- `Excluded table suffixes`: removes tables from the selected set.
-- `Database scope type`: choose normal selected-table sync or post type repair.
-- `Post types for compare/repair`: one post type per line for targeted repair.
-- `Upload include patterns`: optional upload-only folder/glob allow list.
-- `Upload excludes`: upload folder/glob deny list.
-- `wp-content file roots`: explicit relative roots to send.
-- `File excludes`: folder/glob deny list for configured roots.
+The `theme` alias maps to `files`; `content` maps to `database`. In 0.1 the `files` CLI key included uploads: use `media_files` for that behavior after upgrading.
 
-## WP-CLI
+Profiles support included/excluded table suffixes, post type repair, upload include/exclude patterns, explicit content roots and file excludes. Incremental file sync uses the start time of the last successful run that sent files, so database-only runs and edits during a push do not hide unsent changes. Pass `--all-files` for a full file pass.
 
 ```bash
 wp in-synced preview --profile=default
 wp in-synced compare --profile=default --post-types=book,event
-wp in-synced push --profile=default
 wp in-synced push --profile=default --scope=database --mode=upsert
 wp in-synced push --profile=default --scope=database --mode=replace --post-types=book,event
-wp in-synced push --profile=default --scope=theme --all-files
+wp in-synced push --profile=default --scope=files --all-files
 wp in-synced profiles
 ```
 
-Pass `--path=<wordpress-root>` if your install requires it.
+Use `--path=<wordpress-root>` if needed. WP-CLI is preferable for large transfers because PHP/web-server timeouts can end a browser push.
 
-The `theme` scope name is retained for CLI compatibility, but it now means the profile's configured `wp-content` file roots. The `files` scope sends uploads plus those configured roots, and the legacy `content` scope alias is kept for CLI back-compat.
+## Database integrity and repair
 
-## Repairing Interrupted Content Syncs
+Upsert replaces rows by primary/unique keys and does not delete receiver-only rows. Replace clears selected tables after a verified SQL backup; pairing state, nonce claims and active leases remain continuously present during options replacement. User/usermeta tables and transient options are excluded, and receiver guards enforce those boundaries.
 
-If a sync dies halfway through and custom post types look wrong on the remote site:
+A single statement CREATE TABLE allowlist and matching schema fingerprints protect the receiver before replacement. Existing column types, defaults, nullability, indexes and table options must match; auto-increment counters may differ. Generated columns, foreign-key schemas, partition clauses, external storage engines and unusual table options are currently refused. The plugin does not perform schema migrations. Update the receiver's plugins/schema first. Binary strings are base64 encoded on the wire and imported/dumped as hex literals, preserving their bytes. Each request is limited to 8 MB, and batches to 1,000 rows; reduce a profile's batch size if a large row exceeds the limit.
 
-1. Set `Database scope type` to `Post type repair`.
-2. Add the affected post types under `Post types for compare/repair`.
-3. Click `Compare Content` to see local vs remote counts.
-4. Use `replace` mode with only `Database` checked to overwrite just those post types.
+Post type repair preflights incoming row IDs against unrelated receiver content, then backs up and replaces only selected posts and related metadata/comments/relationships. Taxonomy tables are upserted. Use repair only on sites with shared ID lineage: independent installations can also have conflicting taxonomy or plugin-table IDs, and this tool is not a content merger.
 
-Post type repair deletes matching remote posts for the selected post types, then sends local rows from `posts`, `postmeta`, `comments`, `commentmeta`, and `term_relationships`. Term tables are upserted so taxonomy relationships have matching term records.
+Sending and receiving share an atomic site lease to prevent overlapping pushes from truncating each other's source/receiver data. Database requests carry a signed session ID; batches must match prepared tables and repair scope. Leases renew during backup/batches and expire after 15 minutes without activity. An uncertain HTTP failure preserves the receiver lease because its worker might still be running. Wait for expiry before retrying if the receiver cannot finish normally.
 
-## Security Notes
+Syncing a site to itself and multisite synchronization are refused. Multisite uninstall still removes plugin state from every site.
 
-- There is no file browser endpoint.
-- Requests must be signed with the shared secret, timestamp, nonce, route, and body hash.
-- Nonces are single-use, claimed atomically, and retained for the full allowed timestamp window.
-- Upload writes are limited to the WordPress uploads directory.
-- Custom file writes are limited to receiver-approved `wp-content` roots.
-- Users/usermeta are excluded by default on the sender; the receiver also refuses users/usermeta tables from any signed payload.
-- Replace-mode pushes abort when the receiver cannot write a restorable backup first (a dump with no table data counts as a failure), and the backup path is reported in the push log.
-- Backups use randomized filenames, the folder receives `.htaccess`/`index.php` web-deny guards when created, and the newest five backups are kept (filter `in_synced_backup_retention` to change).
-- Table batches are validated against the receiver's live column list before rows are imported.
-- Path checks are lexical; if your host symlinks the uploads directory or an allowed content root, writes follow the symlink (the same behavior as WordPress's own uploads handling).
-- The plugin's own `in_synced_*` options (including in-flight nonce rows) are never imported from local to remote, and they survive replace-mode options syncs.
+## File integrity and security
 
-## Backups & Uninstall
+Uploads refuse executable extensions, dotfiles, server configuration and plugin backup paths. Receiver-approved code roots can transfer executable files. Symlink files/directories beneath a configured root are refused, and sender enumeration skips them. Uploads may use a host-managed canonical base directory; writes remain within that resolved base.
 
-- Backups live in `wp-content/uploads/in-synced-backups/` with web access denied. Restore them manually; they are a safety net, not an automated rollback.
-- Uninstalling the plugin removes its options, profiles, and transients, but leaves backup files in place by default. Delete them manually, or return `true` from the `in_synced_uninstall_delete_backups` filter before uninstalling to have WordPress remove them.
+Chunks are staged in random `.in-synced-*.part` files in the private storage directory's `transfers/` subdirectory, with directory permissions 0700 and file permissions 0600. Partial PHP source never sits beside a public destination. Contiguous offsets, final size, SHA-256 and path confinement are checked before atomic replacement; existing file permissions are retained, and new files use WordPress's standard file permissions. Both the initial gate and final replacement verify matching filesystem devices. Cross-device copying is refused: configure a private `IN_SYNCED_BACKUP_DIR` on the target filesystem. Files require private staging even with database replace disabled.
 
-For stronger staging security, define the shared secret in `wp-config.php` instead of storing it in the database:
+Failed or interrupted transfers preserve the existing destination. Old staged files are removed opportunistically after one hour when another file is received. For an inactive receiver, remove old `.in-synced-*.part` files from its private `transfers/` directory manually. The default per-file limit is 256 MB; `in_synced_max_file_size` can adjust it up to a hard 1 GB cap.
 
-```php
-define('IN_SYNCED_SHARED_SECRET', 'paste-a-long-random-secret-here');
+HMAC v2 binds method, route, timestamp, nonce and exact request body. Nonces are atomically claimed and retained for the full timestamp acceptance period. The shared secret authorizes powerful database and code changes; keep it private. HTTPS supplies confidentiality. There is no remote file-browser endpoint.
+
+## Stop, backups and restoration
+
+Stop push requests cancellation between HTTP batches/chunks; it waits for the current request. Closing a browser does not reliably stop a PHP worker. A stopped/failed push may have already applied database rows or complete files. **Stop is not rollback.** Read the progress log and restore the receiver backup before retrying if needed.
+
+Replace requires a dump containing every requested table, all counted rows, complete checked writes and a verified read-back checksum. Empty tables produce valid schema backups. The newest five completed backups are retained (`in_synced_backup_retention`); partial dumps are deleted on failure. Dumps contain private database data, including stored credentials, and must remain private. SQL backups are a safety net rather than a full-site snapshot or automatic rollback; take a host backup and pause receiver edits/background jobs during replacement. Row-count checks cannot prove a transactional snapshot when concurrent updates keep the same row count.
+
+Restore manually using your host's database tool or, from the **receiver** install, `wp db import /private/path/to/db-backup.sql` after inspecting the dump and confirming the correct target database. A dump includes DROP TABLE statements for the selected tables. Files need a separate backup. Uninstall deletes options, profiles, leases and transients on every site while retaining backups by default. The `in_synced_uninstall_delete_backups` filter explicitly opts into removing completed SQL backups.
+
+## Development and release checks
+
+```bash
+composer install
+composer test
+composer lint
+WP_TESTS_DIR=/path/to/wordpress-tests composer test:integration
 ```
 
-The secret must be at least 32 characters; shorter stored or constant secrets are treated as not paired.
+Integration tests require a disposable WordPress PHPUnit database, never a development or production database. CI checks PHP syntax, WordPress coding standards, PHP 7.2 compatibility and focused safety/integrity regressions. Package using `.distignore` exclusions; vendor dependencies are development-only. Translation source is languages/in-synced.pot. These checks support release review; WordPress directory admission and large-host stress testing remain separate review steps, especially the explicitly approved executable-file transfer feature.
